@@ -1,0 +1,54 @@
+.grid{
+    display: grid;
+    grid-template-areas:
+    'header header header header'
+    'menu main main main'
+    'menu second second second'
+    'menu footer footer footer';
+  grid-gap: 10px;
+  padding: 10px;
+}
+
+.header{
+    grid-area: header;
+}
+
+.header #welcometext {
+    grid-area: header;
+    padding-left: 5px;
+    display: inline-block;
+    font-size: 50px;
+    font-weight: bold;
+    color: gray;
+}
+
+.header img {
+    height: 90px;
+    width: auto;
+}
+
+.menu{
+    grid-area: menu;
+    border-style: solid;
+    background-image: url(thumbsup.jpeg);
+    background-position: center;
+    background-size: 150px;
+}
+
+#text1{
+    grid-area: main;
+}
+
+#text2{
+    grid-area: second;
+    font-family: cursive;
+}
+
+.footer{
+    grid-area: footer;
+}
+
+* {
+    margin: 5px;
+    background-color: beige;
+}
