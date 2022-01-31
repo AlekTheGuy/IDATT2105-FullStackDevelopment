@@ -6,8 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="style.css">
     <title>Øving 1</title>
+    <script type="text/javascript" src="script.js"></script>
 </head>
-<body>
+<body onload="addOptions()">
    
     <div class="grid">
 
@@ -19,10 +20,15 @@
         <div class="menu">
                 <div>kontakt</div>
                 <div>om denne siden</div>
+                <button onclick="incrementValue()">overflow simulator</button>
+                <div id="value">0</div>
+                <ul id="list" onload="addOptions()">
+                    <li>valg1</li>
+                </ul>
 
-            <select name="menu">
+            <select name="menu" onchange="addOptions()">
                 <option value="beige-mode">beige-mode</option>
-                <option value="dark-mode">dark-mode</option>
+                <option value="green-mode">green-mode</option>
             </select>
         </div>
 
@@ -37,7 +43,8 @@
         </div>
 
         <footer class="footer">
-            @copyright and stuff 2022 - companyname
+            <button onclick="hideText()">uncopyright</button>
+            <div id="copyright">@copyright and stuff 2022 - companyname</div>
         </footer>
 
     </div>
