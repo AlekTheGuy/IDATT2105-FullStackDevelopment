@@ -33,7 +33,8 @@ export default {
             }
             if (n == "=") {
                 //Never use eval() unless you´re a moron like me, shits dangeorus yo.
-                let answer = eval(this.currentCalculation);
+                //let answer = eval(this.currentCalculation);
+                let answer = 2;
                 this.currentCalculation = this.currentCalculation + " = " + answer;
                 this.toClear = true;
                 this.history[2] = this.history[1];
