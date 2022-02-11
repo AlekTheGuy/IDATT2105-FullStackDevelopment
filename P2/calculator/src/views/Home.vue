@@ -12,3 +12,10 @@ export default {  components: {
   },
 };
 </script>
+
+<style scoped>
+.home {
+  background-color: rgb(221, 221, 221);
+  min-height: 100vh;
+}
+</style>
