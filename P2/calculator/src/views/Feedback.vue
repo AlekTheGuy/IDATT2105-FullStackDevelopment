@@ -12,14 +12,24 @@
       <textarea required v-bind="$store.state.message"></textarea>
 
       <div class="submit">
-        <button>Submit feedback</button>
+        <button @click="$store.commit('submitFeedback')">
+          Submit feedback
+        </button>
       </div>
+
+      <button @click="$store.commit('loadData')">
+        load data from local storage
+      </button>
     </form>
   </div>
 </template>
 
 <script>
-export default {};
+export default {
+  mounted() {
+    this.$store.commit('loadData')
+  },
+};
 </script>
 
 <style scoped>
