@@ -1,6 +1,6 @@
 <template>
   <div class="rootDiv">
-    <form>
+    <form @submit.prevent="submit">
       <label>Name: </label>
       <input type="text" required v-model="$store.state.name" />
 
@@ -12,14 +12,13 @@
       <textarea required v-bind="$store.state.message"></textarea>
 
       <div class="submit">
-        <button @click="$store.commit('submitFeedback')">
+        <button
+          @click="$store.commit('submitFeedback')"
+          :disabled="$store.state.message"
+        >
           Submit feedback
         </button>
       </div>
-
-      <button @click="$store.commit('loadData')">
-        load data from local storage
-      </button>
     </form>
   </div>
 </template>
@@ -27,7 +26,7 @@
 <script>
 export default {
   mounted() {
-    this.$store.commit('loadData')
+    this.$store.commit("loadData");
   },
 };
 </script>
@@ -90,5 +89,11 @@ textarea {
 .rootDiv {
   background-color: rgb(221, 221, 221);
   min-height: 100vh;
+}
+
+button:disabled,
+button[disabled] {
+  background-color: #cccccc;
+  color: #666666;
 }
 </style>
