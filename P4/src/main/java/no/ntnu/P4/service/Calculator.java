@@ -7,9 +7,11 @@ import java.util.ArrayList;
 @Service
 public class Calculator {
 
-    ArrayList<String> calculations = new ArrayList<>();
+    ArrayList<String> calculations;
 
     public Calculator() {
+        calculations = new ArrayList<>();
+        calculations.add("0");
     }
 
     public ArrayList<String> getCalculations() {
@@ -20,12 +22,12 @@ public class Calculator {
         this.calculations = calculations;
     }
 
-    public String calculate(double num1, double num2, char operator) {
-        if (operator == '-') {
+    public String calculate(double num1, double num2, String operator) {
+        if (operator.equals("-")) {
             return num1 + " - " + num2 + " = " + (num1 - num2);
-        } else if (operator == '*') {
+        } else if (operator.equals("*")) {
             return num1 + " * " + num2 + " = " + (num1 * num2);
-        } else if (operator == '/') {
+        } else if (operator.equals("/")) {
             return num1 + " / " + num2 + " = " + (num1 / num2);
         }
         return num1 + " + " + num2 + " = " + (num1 + num2);

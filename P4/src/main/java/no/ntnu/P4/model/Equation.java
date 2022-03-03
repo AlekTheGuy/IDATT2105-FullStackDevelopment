@@ -3,9 +3,9 @@ package no.ntnu.P4.model;
 public class Equation {
     private double num1;
     private double num2;
-    private char operator;
+    private String operator;
 
-    public Equation(double num1, double num2, char operator) {
+    public Equation(double num1, double num2, String operator) {
         this.num1 = num1;
         this.num2 = num2;
         this.operator = operator;
@@ -27,11 +27,11 @@ public class Equation {
         this.num2 = num2;
     }
 
-    public char getOperator() {
+    public String getOperator() {
         return operator;
     }
 
-    public void setOperator(char operator) {
+    public void setOperator(String operator) {
         this.operator = operator;
     }
 
