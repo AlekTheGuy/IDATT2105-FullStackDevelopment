@@ -13,9 +13,4 @@ export default {
       return result.data;
     });
   },
-  getHistory() {
-    return axios.get("http://localhost:8081/calculate/all").then((result) => {
-      return result.data;
-    });
-  },
 };
