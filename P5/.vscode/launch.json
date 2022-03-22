@@ -1,0 +1,15 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Spring Boot-JavaDbApplication<javaDB>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "console": "internalConsole",
+            "mainClass": "no.ntnu.javaDB.JavaDbApplication",
+            "projectName": "javaDB",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        }
+    ]
+}
