@@ -9,7 +9,7 @@ public class DatabaseWrapper {
 
         Connection connection = DriverManager
                 .getConnection(
-                        "jdbc:mysql://mysql.stud.iie.ntnu.no:3306/alekhal" + "?user=alekhal&password=4ml9HIe6");
+                        "jdbc:mysql://mysql.stud.iie.ntnu.no:3306/alekhal" + "?user=alekhal&password=");
 
         //Statement statement = connection.createStatement();
         PreparedStatement preparedStatement = connection.prepareStatement(sql);
