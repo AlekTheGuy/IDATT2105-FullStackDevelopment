@@ -4,12 +4,7 @@ public class Equation {
     private double num1;
     private double num2;
     private String operator;
-
-    public Equation(double num1, double num2, String operator) {
-        this.num1 = num1;
-        this.num2 = num2;
-        this.operator = operator;
-    }
+    private double answer;
 
     public double getNum1() {
         return num1;
@@ -33,6 +28,14 @@ public class Equation {
 
     public void setOperator(String operator) {
         this.operator = operator;
+    }
+
+    public double getAnswer() {
+        return answer;
+    }
+    
+    public void setAnswer(double answer) {
+        this.answer = answer;
     }
 
     @Override

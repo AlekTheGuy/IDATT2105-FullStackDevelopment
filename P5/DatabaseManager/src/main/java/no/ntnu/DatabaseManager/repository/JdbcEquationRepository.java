@@ -22,6 +22,6 @@ public class JdbcEquationRepository implements EquationRepository {
 
     @Override
     public List<Equation> findAll() {
-        return jdbcTemplate.query("SELECT * from equations", BeanPropertyRowMapper.newInstance(Equation.class));  
+        return jdbcTemplate.query("SELECT * from equations", BeanPropertyRowMapper.newInstance(Equation.class));
     }
 }

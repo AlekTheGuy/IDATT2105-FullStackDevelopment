@@ -1,11 +1,6 @@
 <template>
   <div class="calculator">
     <h1 class="inputfield">{{ currentCalculation }}</h1>
-    <div class="history">
-      <h3>{{ history[0] }}</h3>
-      <h3>{{ history[1] }}</h3>
-      <h3>{{ history[2] }}</h3>
-    </div>
 
     <div class="buttons">
       <button
@@ -17,7 +12,8 @@
         {{ n }}
       </button>
     </div>
-    <div class="history"></div>
+    <button class="button" id="historybutton">Show history</button>
+    <div id="historybox" class="history" @click="fetchHistory()">{{ history }}</div>
   </div>
 </template>
 
@@ -46,7 +42,7 @@ export default {
       ],
       currentCalculation: "ready",
       toClear: true,
-      history: ["", "", ""],
+      history: "test",
     };
   },
   methods: {
@@ -58,12 +54,6 @@ export default {
       if (n === "=") {
         let numbers = this.splitNumbers(this.currentCalculation);
         await calculator.postCalculation(numbers[0], numbers[1], numbers[2]);
-        //For some reason getPreviousAnswer returns the old answer the first time i use it.
-        //By using it to give the previous calculation to history it is a feature, not a bug.
-        this.history[2] = this.history[1];
-        this.history[1] = this.history[0];
-        this.history[0] = await calculator.getPreviousAnswer();
-        this.currentCalculation = await calculator.getPreviousAnswer();
         this.toClear = true;
       } else {
         this.currentCalculation += n;
@@ -89,6 +79,9 @@ export default {
         calculation.push("/");
         return calculation;
       }
+    },
+    async fetchHistory() {
+      this.history = await calculator.getHistory();
     },
   },
 };

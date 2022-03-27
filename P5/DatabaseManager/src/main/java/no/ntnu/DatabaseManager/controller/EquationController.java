@@ -22,22 +22,19 @@ public class EquationController {
     EquationRepository equationRepository;
 
     @GetMapping("/equations")
-    public ResponseEntity<List<Equation>> getAll() {
+    public ResponseEntity<List<Equation>> getAll(){
         List<Equation> equations = new ArrayList<>();
-        try {
-            equations = equationRepository.findAll();
-
-            // equationRepository.findAll().forEach(equations::add);
-        } catch (Exception e) {
-            return new ResponseEntity<>(equations, HttpStatus.INTERNAL_SERVER_ERROR);
+        try{
+            equationRepository.findAll().forEach(equations::add);
         }
-        for (Equation equation : equations) {
-            System.out.println(equation.getNum1());
+        catch(Exception e){
+            e.printStackTrace();
+            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
         }
         return new ResponseEntity<>(equations, HttpStatus.OK);
     }
 
-    @PostMapping("/calculation")
+    @PostMapping("/calculate")
     public ResponseEntity<String> createEquation(@RequestBody Equation equation) {
         try {
             equationRepository.save(equation);
