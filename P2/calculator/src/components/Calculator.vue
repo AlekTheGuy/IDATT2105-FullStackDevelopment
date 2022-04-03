@@ -1,19 +1,30 @@
 <template>
-  <div class="calculator">
-    <h1 class="inputfield">{{ currentCalculation }}</h1>
+  <div class="root">
+    <div class="calculator">
+      <h1 class="inputfield">{{ currentCalculation }}</h1>
 
-    <div class="buttons">
-      <button
-        class="button"
-        v-for="n in buttonArray"
-        :key="n"
-        @click="processInput(n)"
-      >
-        {{ n }}
-      </button>
+      <div class="buttons">
+        <button
+          class="button"
+          v-for="n in buttonArray"
+          :key="n"
+          @click="processInput(n)"
+        >
+          {{ n }}
+        </button>
+      </div>
     </div>
-    <button class="button" id="historybutton">Show history</button>
-    <div id="historybox" class="history" @click="fetchHistory()">{{ history }}</div>
+    <div class="history">
+      <select id="amount" name="amount" @change="changeAmount($event)">
+        <option value="5">5</option>
+        <option value="10">10</option>
+        <option value="20">20</option>
+      </select>
+      <button class="historybutton" @click="fetchHistory()">
+        Show history
+      </button>
+      <textarea class="historytextbox" v-model="history" readonly></textarea>
+    </div>
   </div>
 </template>
 
@@ -42,7 +53,8 @@ export default {
       ],
       currentCalculation: "ready",
       toClear: true,
-      history: "test",
+      history: "",
+      amount: 5,
     };
   },
   methods: {
@@ -53,8 +65,10 @@ export default {
       }
       if (n === "=") {
         let numbers = this.splitNumbers(this.currentCalculation);
+
         await calculator.postCalculation(numbers[0], numbers[1], numbers[2]);
         this.toClear = true;
+        this.fetchHistory();
       } else {
         this.currentCalculation += n;
       }
@@ -81,18 +95,29 @@ export default {
       }
     },
     async fetchHistory() {
-      this.history = await calculator.getHistory();
+      this.history = await calculator.getHistory(this.amount);
+      console.log(this.history);
+    },
+    changeAmount(event) {
+      this.amount = event.target.value;
+      this.fetchHistory();
     },
   },
 };
 </script>
 
 <style scoped>
+.root {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 20px;
+  width: 50%;
+}
+
 .calculator {
   display: grid;
   grid-template-areas:
     "inputfield"
-    "history"
     "buttons";
   width: 270px;
   max-width: 270px;
@@ -131,11 +156,17 @@ export default {
   margin: auto;
 }
 
-.history {
+.historytextbox {
   background-color: rgb(192, 190, 190);
   max-width: 250px;
   width: 250px;
   margin: auto;
+  min-height: 300px;
 }
 
+.history {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  background-color: rgb(112, 112, 112);
+}
 </style>
