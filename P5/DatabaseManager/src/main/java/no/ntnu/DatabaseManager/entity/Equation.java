@@ -2,15 +2,21 @@ package no.ntnu.DatabaseManager.entity;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 @Entity
+@Table(name = "equations")
 public class Equation {
     
-    private @Id @GeneratedValue Long id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
     private int num1;
     private int num2;
     private char operator;
+    private double answer;
 
     public Equation() {
     }
@@ -48,15 +54,18 @@ public class Equation {
     public void setOperator(char operator) {
         this.operator = operator;
     }
-    
+
+    public double getAnswer() {
+        return answer;
+    }
+
+    public void setAnswer(double answer) {
+        this.answer = answer;
+    }
 
     @Override
     public String toString() {
-        return "{" +
-            " id='" + getId() + "'" +
-            ", num1='" + getNum1() + "'" +
-            ", num2='" + getNum2() + "'" +
-            ", operator='" + getOperator() + "'" +
-            "}";
+        return num1 + " " + operator + " " + num2 + " = " + answer;
     }
+
 }
