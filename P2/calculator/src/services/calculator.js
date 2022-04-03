@@ -8,8 +8,8 @@ export default {
         return result.data;
       });
   },
-  postCalculation(num1, num2, operator) {
-    axios.post("http://localhost:8081/api/equations", {
+  async postCalculation(num1, num2, operator) {
+    await axios.post("http://localhost:8081/api/equations", {
       num1: num1,
       num2: num2,
       operator: operator,

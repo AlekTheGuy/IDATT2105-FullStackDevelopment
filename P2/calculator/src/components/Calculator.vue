@@ -16,13 +16,10 @@
     </div>
     <div class="history">
       <select id="amount" name="amount" @change="changeAmount($event)">
-        <option value="5">5</option>
         <option value="10">10</option>
         <option value="20">20</option>
+        <option value="30">30</option>
       </select>
-      <button class="historybutton" @click="fetchHistory()">
-        Show history
-      </button>
       <textarea class="historytextbox" v-model="history" readonly></textarea>
     </div>
   </div>
@@ -54,7 +51,7 @@ export default {
       currentCalculation: "ready",
       toClear: true,
       history: "",
-      amount: 5,
+      amount: 10,
     };
   },
   methods: {
@@ -68,7 +65,8 @@ export default {
 
         await calculator.postCalculation(numbers[0], numbers[1], numbers[2]);
         this.toClear = true;
-        this.fetchHistory();
+        await this.fetchHistory();
+        this.findPreviousCalculation();
       } else {
         this.currentCalculation += n;
       }
@@ -102,6 +100,14 @@ export default {
       this.amount = event.target.value;
       this.fetchHistory();
     },
+    findPreviousCalculation() {
+      let tempHistory = this.history.split("\n");
+      let answer = tempHistory[0].split("=");
+      this.currentCalculation = Math.round(answer[1] * 100) / 100;
+    },
+  },
+  mounted() {
+    this.fetchHistory();
   },
 };
 </script>
@@ -157,7 +163,6 @@ export default {
 }
 
 .historytextbox {
-  background-color: rgb(192, 190, 190);
   max-width: 250px;
   width: 250px;
   margin: auto;
