@@ -167,6 +167,7 @@ export default {
   width: 250px;
   margin: auto;
   min-height: 300px;
+  resize: none;
 }
 
 .history {
